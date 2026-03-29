@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class ListarPost extends Component
+class ListPost extends Component
 {
     public $posts;
 
@@ -20,6 +20,6 @@ class ListarPost extends Component
      */
     public function render()
     {
-        return view('components.listar-post');
+        return view('components.list-post');
     }
 }

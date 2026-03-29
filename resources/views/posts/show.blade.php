@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('titulo')
-    {{ $post->titulo }}
+@section('title')
+    {{ $post->title }}
 @endsection
 
 
 @section('contenido')
     <div class="container mx-auto md:flex">
         <div class="md:w-1/2">
-            <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del post {{ $post->titulo }}">
+            <img src="{{ asset('uploads') . '/' . $post->image }}" alt="Imagen del post {{ $post->title }}">
 
             
             <div class="p-3 flex items-center gap-4">
@@ -23,7 +23,7 @@
                     {{ $post->created_at->diffForHumans() }}
                 </p>
                 <p class="mt-5">
-                    {{ $post->descripcion }}
+                    {{ $post->description }}
                 </p>
             </div>
 
@@ -56,20 +56,20 @@
                     @endif
 
 
-                    <form action="{{ route('comentarios.store', ['post' => $post, 'user' => $user ] ) }}" method="POST">
+                    <form action="{{ route('comments.store', ['post' => $post, 'user' => $user ] ) }}" method="POST">
                         @csrf
                         <div class="mb-5">
-                            <label for="comentario" class="mb-2 block uppercase text-gray-500 font-bold">
+                            <label for="comment" class="mb-2 block uppercase text-gray-500 font-bold">
                                 Añade un Comentario
                             </label>
                             <textarea 
-                                id="comentario"
-                                name="comentario"
+                                id="comment"
+                                name="comment"
                                 placeholder="Agrega un Comentario"
                                 class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
                             ></textarea>
         
-                            @error('comentario')
+                            @error('comment')
                                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }} </p>
                             @enderror
                         </div>
@@ -84,14 +84,14 @@
                 @endauth
 
                 <div class="bg-white shadow mb-5 max-h-96 overflow-y-scroll mt-10">
-                    @if ($post->comentarios->count())
-                        @foreach ( $post->comentarios as $comentario )
+                    @if ($post->comments->count())
+                        @foreach ( $post->comments as $comment )
                             <div class="p-5 border-gray-300 border-b">
-                                <a href="{{ route('posts.index', $comentario->user ) }} " class="font-bold">
-                                    {{$comentario->user->username}}
+                                <a href="{{ route('posts.index', $comment->user ) }} " class="font-bold">
+                                    {{$comment->user->username}}
                                 </a>
-                                <p>{{ $comentario->comentario }}
-                                <p class="text-sm text-gray-500">{{ $comentario->created_at->diffForHumans() }}
+                                <p>{{ $comment->comment }}
+                                <p class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}
                             </div>
                         @endforeach
                     @else

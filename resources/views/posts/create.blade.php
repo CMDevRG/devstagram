@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo')
+@section('title')
     Crea una nueva Publicación
 @endsection
 
@@ -14,7 +14,7 @@
 @section('contenido')
     <div class="md:flex md:items-center">
         <div class="md:w-1/2 px-10">
-            <form action="{{ route('imagenes.store') }}" method="POST" enctype="multipart/form-data" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
+            <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
                 @csrf
             </form>
         </div>
@@ -23,46 +23,46 @@
             <form action="{{ route('posts.store') }}" method="POST" novalidate>
                 @csrf
                 <div class="mb-5">
-                    <label for="titulo" class="mb-2 block uppercase text-gray-500 font-bold">
+                    <label for="title" class="mb-2 block uppercase text-gray-500 font-bold">
                            Titulo
                     </label>
                     <input 
-                        id="titulo"
-                        name="titulo"
+                        id="title"
+                        name="title"
                         type="text"
                         placeholder="Titulo de la Publicación"
                         class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
-                        value="{{ old('titulo') }}"
+                        value="{{ old('title') }}"
                     />
 
-                    @error('titulo')
+                    @error('title')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }} </p>
                     @enderror
                 </div>
 
                 <div class="mb-5">
-                    <label for="descripcion" class="mb-2 block uppercase text-gray-500 font-bold">
+                    <label for="description" class="mb-2 block uppercase text-gray-500 font-bold">
                            Descripción
                     </label>
                     <textarea 
-                        id="descripcion"
-                        name="descripcion"
+                        id="description"
+                        name="description"
                         placeholder="Descripción de la Publicación"
                         class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
-                    >{{ old('descripcion') }}</textarea>
+                    >{{ old('description') }}</textarea>
 
-                    @error('descripcion')
+                    @error('description')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }} </p>
                     @enderror
                 </div>
 
                 <div class="mb-5">
                     <input 
-                        name="imagen"
+                        name="image"
                         type="hidden"
-                        value="{{ old('imagen') }}"
+                        value="{{ old('image') }}"
                     />
-                    @error('imagen')
+                    @error('image')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }} </p>
                     @enderror
                 </div>

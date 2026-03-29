@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo')
+@section('title')
     Inicia Sesión en DevStagram
 @endsection
 

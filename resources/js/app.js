@@ -5,7 +5,7 @@ Dropzone.autoDiscover = false;
 if(document.querySelector('#dropzone')) {
 
     const dropzone = new Dropzone("#dropzone", {
-        dictDefaultMessage: "Sube aquí tu imagen",
+        dictDefaultMessage: "Sube aquí tu image",
         acceptedFiles: ".png,.jpg,.jpeg,.gif",
         addRemoveLinks: true,
         dictRemoveFile: "Borrar Archivo",
@@ -13,21 +13,21 @@ if(document.querySelector('#dropzone')) {
         uploadMultiple: false,
     
         init: function () {
-            if (document.querySelector('[name="imagen"]').value.trim()) {
-                const imagenPublicada = {};
-                imagenPublicada.size = 1234;
-                imagenPublicada.name =
-                    document.querySelector('[name="imagen"]').value;
+            if (document.querySelector('[name="image"]').value.trim()) {
+                const publishedImage = {};
+                publishedImage.size = 1234;
+                publishedImage.name =
+                    document.querySelector('[name="image"]').value;
     
-                this.options.addedfile.call(this, imagenPublicada);
+                this.options.addedfile.call(this, publishedImage);
     
                 this.options.thumbnail.call(
                     this,
-                    imagenPublicada,
-                    `/uploads/${imagenPublicada.name}`
+                    publishedImage,
+                    `/uploads/${publishedImage.name}`
                 );
     
-                imagenPublicada.previewElement.classList.add(
+                publishedImage.previewElement.classList.add(
                     "dz-success",
                     "dz-complete"
                 );
@@ -36,11 +36,11 @@ if(document.querySelector('#dropzone')) {
     });
     
     dropzone.on("success", function (file, response) {
-        document.querySelector('[name="imagen"]').value = response.imagen;
+        document.querySelector('[name="image"]').value = response.image;
     });
     
     dropzone.on("removedfile", function () {
-        document.querySelector('[name="imagen"]').value = "";
+        document.querySelector('[name="image"]').value = "";
     });
     
 }

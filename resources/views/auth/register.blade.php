@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('titulo')
+@section('title')
     Regístrate en DevStagram
 @endsection
 
 @section('contenido')
     <div class="md:flex md:justify-center md:gap-10 md:items-center ">
         <div class="md:w-6/12 p-5">
-            <img src="{{ asset('img/registrar.jpg') }}" alt="Imagen registro de usuarios" >
+            <img src="{{ asset('img/register.jpg') }}" alt="Imagen registro de usuarios" >
         </div>
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">

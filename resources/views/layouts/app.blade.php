@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @stack('styles')
-        <title>DevStagram - @yield('titulo')</title>
+        <title>DevStagram - @yield('title')</title>
         @livewireStyles
     </head>
     <body class="bg-gray-100">
@@ -63,7 +63,7 @@
 
         <main class="container mx-auto mt-10">
             <h2 class="font-black text-center  text-3xl mb-10">
-                @yield('titulo')
+                @yield('title')
             </h2>
             @yield('contenido')
         </main>

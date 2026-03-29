@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo')
+@section('title')
     Perfil: {{ $user->username }}
 @endsection
 
@@ -11,8 +11,8 @@
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col items-center md:flex-row">
             <div class="w-8/12 lg:w-6/12 px-5">
                 <img src="{{ 
-                    $user->imagen ?  
-                    asset('perfiles') . '/' . $user->imagen : 
+                    $user->image ?  
+                    asset('profiles') . '/' . $user->image : 
                     asset('img/usuario.svg') }}" 
                     alt="imagen usuario" 
                 />
@@ -24,7 +24,7 @@
                     @auth
                         @if($user->id === auth()->user()->id)
                             <a 
-                                href="{{ route('perfil.index') }}"
+                                href="{{ route('profile.index') }}"
                                 class="text-gray-500 hover:text-gray-600 cursor-pointer"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -90,7 +90,7 @@
     <section class="container mx-auto mt-10">
         <h2 class="text-4xl text-center font-black my-10">Publicaciones</h2>
 
-        <x-listar-post :posts="$posts" />
+        <x-list-post :posts="$posts" />
         
     </section>
 @endsection

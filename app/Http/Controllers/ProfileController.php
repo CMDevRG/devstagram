@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
-class PerfilController extends Controller
+class ProfileController extends Controller
 {
     public function __construct()
     {
@@ -16,7 +16,7 @@ class PerfilController extends Controller
     
     public function index()
     {
-        return view('perfil.index');
+        return view('profile.index');
     }
 
     public function store(Request $request)
@@ -26,25 +26,25 @@ class PerfilController extends Controller
 
 
         $this->validate($request, [
-            'username' => ['required', 'unique:users,username,'.auth()->user()->id, 'min:3', 'max:20', 'not_in:twitter,editar-perfil'],
+            'username' => ['required', 'unique:users,username,'.auth()->user()->id, 'min:3', 'max:20', 'not_in:twitter,edit-profile'],
         ]);
 
-        if($request->imagen) {
-            $imagen = $request->file('imagen');
+        if($request->image) {
+            $image = $request->file('image');
 
-            $nombreImagen = Str::uuid() . "." . $imagen->extension();
+            $imageName = Str::uuid() . "." . $image->extension();
     
-            $imagenServidor = Image::make($imagen);
-            $imagenServidor->fit(1000, 1000);
+            $imageServer = Image::make($image);
+            $imageServer->fit(1000, 1000);
     
-            $imagenPath = public_path('perfiles') . '/' . $nombreImagen;
-            $imagenServidor->save($imagenPath);
+            $imagePath = public_path('profiles') . '/' . $imageName;
+            $imageServer->save($imagePath);
         }
 
         // Guardar cambios
         $usuario = User::find(auth()->user()->id);
         $usuario->username = $request->username;
-        $usuario->imagen = $nombreImagen ?? auth()->user()->imagen ?? null;
+        $usuario->image = $imageName ?? auth()->user()->image ?? null;
         $usuario->save();
 
         // Redireccionar

@@ -20,21 +20,21 @@ var dropzone = new dropzone__WEBPACK_IMPORTED_MODULE_0__["default"]("#dropzone",
   maxFiles: 1,
   uploadMultiple: false,
   init: function init() {
-    if (document.querySelector('[name="imagen"]').value.trim()) {
-      var imagenPublicada = {};
-      imagenPublicada.size = 1234;
-      imagenPublicada.name = document.querySelector('[name="imagen"]').value;
-      this.options.addedfile.call(this, imagenPublicada);
-      this.options.thumbnail.call(this, imagenPublicada, "/uploads/".concat(imagenPublicada.name));
-      imagenPublicada.previewElement.classList.add("dz-success", "dz-complete");
+    if (document.querySelector('[name="image"]').value.trim()) {
+      var publishedImage = {};
+      publishedImage.size = 1234;
+      publishedImage.name = document.querySelector('[name="image"]').value;
+      this.options.addedfile.call(this, publishedImage);
+      this.options.thumbnail.call(this, publishedImage, "/uploads/".concat(publishedImage.name));
+      publishedImage.previewElement.classList.add("dz-success", "dz-complete");
     }
   }
 });
 dropzone.on("success", function (file, response) {
-  document.querySelector('[name="imagen"]').value = response.imagen;
+  document.querySelector('[name="image"]').value = response.image;
 });
 dropzone.on("removedfile", function () {
-  document.querySelector('[name="imagen"]').value = "";
+  document.querySelector('[name="image"]').value = "";
 });
 
 /***/ }),

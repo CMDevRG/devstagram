@@ -32,30 +32,30 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'titulo' => 'required|max:255',
-            'descripcion' => 'required',
-            'imagen' => 'required'
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'image' => 'required'
         ]);
 
         // Post::create([
-        //     'titulo' => $request->titulo,
-        //     'descripcion' => $request->descripcion,
-        //     'imagen' => $request->imagen,
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        //     'image' => $request->image,
         //     'user_id' => auth()->user()->id
         // ]);
 
         // Otra forma
         // $post = new Post;
-        // $post->titulo = $request->titulo;
-        // $post->descripcion = $request->descripcion;
-        // $post->imagen = $request->imagen;
+        // $post->title = $request->title;
+        // $post->description = $request->description;
+        // $post->image = $request->image;
         // $post->user_id = auth()->user()->id;
         // $post->save();
 
         $request->user()->posts()->create([
-            'titulo' => $request->titulo,
-            'descripcion' => $request->descripcion,
-            'imagen' => $request->imagen,
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $request->image,
             'user_id' => auth()->user()->id
         ]);
 
@@ -75,11 +75,11 @@ class PostController extends Controller
         $this->authorize('delete', $post);
         $post->delete();
 
-        // Eliminar la imagen
-        $imagen_path = public_path('uploads/' . $post->imagen);
+        // Eliminar la image
+        $image_path = public_path('uploads/' . $post->image);
 
-        if(File::exists($imagen_path)) {
-            unlink($imagen_path);
+        if(File::exists($image_path)) {
+            unlink($image_path);
         }
 
         return redirect()->route('posts.index', auth()->user()->username);
